@@ -13,11 +13,11 @@ export class Webcam {
         }
     }
 
-    async setup(modo = 'user') {
+    async setup(modo) {
         return new Promise((resolve, reject) => {
             if (navigator.mediaDevices.getUserMedia !== undefined) {
                 navigator.mediaDevices.getUserMedia({
-                    audio: false, video: { facingMode: modo }
+                    audio: false, video: { facingMode: {exact:modo} }
                 })
                     .then((mediaStream) => {
                         if ("srcObject" in this.webcamElement) {

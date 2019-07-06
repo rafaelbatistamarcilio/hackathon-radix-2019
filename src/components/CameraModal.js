@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
 
 const takePick = (cameraElement, canvasElement, callback) => {
     const cam = new Webcam(cameraElement, canvasElement);
-    cam.setup().catch(() => alert('Error getting access to your camera'));
+    cam.setup('user').catch(() => alert('Error getting access to your camera'));
     callback(cam);
 }
 
