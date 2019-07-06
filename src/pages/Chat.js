@@ -105,9 +105,9 @@ export default props => {
         <div>
             <Mensagens mensagens={mensagens} />
 
-            {/* <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} /> */}
+            <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} />
             
-            <MessageInput onMessage={e => sendMessage(e)} onCamera={e => getImage()} />
+            {/* <MessageInput onMessage={e => sendMessage(e)} onCamera={e => getImage()} /> */}
 
             <CameraModal
                 showCamera={showCamera}
