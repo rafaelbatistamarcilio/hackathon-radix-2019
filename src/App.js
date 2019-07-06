@@ -1,26 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React, { useState } from 'react';
+import Header from './components/Header';
+import Router from './components/Router';
+import SideMenu from './components/SideMenu';
+
+export default () => {
+  const [showMenu, setMenu] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header onOpenMenu={e => setMenu(true)} />
+      <SideMenu show={showMenu} onClose={e => setMenu(false)} onOpen={e => setMenu(true)} />
+      <Router/>
     </div>
-  );
+  )
 }
-
-export default App;
