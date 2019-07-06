@@ -15,6 +15,10 @@ const useStyles = makeStyles(theme => ({
     inline: {
         display: 'inline',
     },
+    image:{
+        width: '100%',
+        height: 'auto'
+    }
 }));
 
 export default props => {
@@ -30,7 +34,7 @@ export default props => {
             <ListItemText primary={props.message.user.name} secondary={
                 <React.Fragment>
                     {
-                        props.message.image ? <img src={props.message.text} /> :
+                        props.message.image ? <img className={classes.image} src={props.message.text} /> :
                         <Typography
                         component="span"
                         variant="body2"

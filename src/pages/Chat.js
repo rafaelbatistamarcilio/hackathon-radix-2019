@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState, useRef } from 'react';
 import CameraModal from '../components/CameraModal';
 import Mensagens from '../components/Mensagens';
 import MessageInput from '../components/MessageInput';
@@ -46,7 +46,6 @@ export default props => {
 
     const [userId, setUserId] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
-
     const [mensagens, setStore] = useReducer(reducer, mensagensInit);
 
     useEffect(() => { loadUserData(props, setUserId); }, []);
@@ -57,32 +56,34 @@ export default props => {
     }
 
     const sendMessage = (message, image) => {
-        //Axios.post(CHAT_API, { message });
-        const newMessage = {
-            text: message,
-            user: {
-                name: 'You',
-                avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
-            },
-            image: image,
-            fromUser: true,
-            date: '10/10/2016'
-        }
+        if (message) {
+            //Axios.post(CHAT_API, { message });
+            const newMessage = {
+                text: message,
+                user: {
+                    name: 'You',
+                    avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+                },
+                image: image,
+                fromUser: true,
+                date: '10/10/2016'
+            }
 
-        setTimeout(() => {
-            setStore({
-                action: 'add',
-                value: {
-                    text: 'Resposta',
-                    user: {
-                        name: 'João',
-                        avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+            setTimeout(() => {
+                setStore({
+                    action: 'add',
+                    value: {
+                        text: 'Resposta',
+                        user: {
+                            name: 'João',
+                            avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+                        }
                     }
-                }
-            });
-        }, 500)
+                });
+            }, 500)
 
-        setStore({ action: 'add', value: newMessage });
+            setStore({ action: 'add', value: newMessage });
+        }
     }
 
     return (

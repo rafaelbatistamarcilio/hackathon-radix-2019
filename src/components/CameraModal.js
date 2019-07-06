@@ -1,6 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Modal, Card, CardActionArea, CardContent, CardActions, Button } from '@material-ui/core';
+import { Card, CardActionArea, CardActions, CardContent, Grid, Icon, Modal, makeStyles } from '@material-ui/core';
+import React, { useRef, useState } from 'react';
 import { Webcam } from '../utils/Webcam';
+
+const useStyles = makeStyles(theme => ({
+    icon: {
+        paddingLeft:'2em'
+    }
+}));
 
 
 const takePick = (cameraElement, canvasElement, callback) => {
@@ -24,6 +30,7 @@ const cameraInitialState = {
 }
 
 export default props => {
+    const classes = useStyles();
 
     const [cameraState, setCameraState] = useState(cameraInitialState);
     const [webcam, setCamera] = useState(null);
@@ -43,26 +50,27 @@ export default props => {
     }
 
     return (
-        <Modal open={props.showCamera}>
+        <Modal open={props.showCamera} onRendered={e => openCamera()}>
 
             <Card >
                 <CardActionArea>
-                    <CardContent>
+                    <CardContent >
                         <video autoPlay playsInline muted ref={cameraElement} width="100%" height="400" />
                         <canvas className={{ display: 'none' }} ref={canvasElement}></canvas>
                     </CardContent>
                 </CardActionArea>
 
                 <CardActions>
-                    <Button size="small" color="primary" onClick={e => openCamera()}>
-                        open camera
-                    </Button>
-                    <Button variant="contained" color="primary" onClick={e => captureImage(webcam, onCapture)}>
-                        Capture
-                    </Button>
-                    <Button variant="contained" color="primary" onClick={e => props.onSave(cameraState.capturedImage)}>
-                        Ok
-                    </Button>
+                    <Grid alignItems="flex-end" container>
+                        <Grid item xs={10}>
+                        </Grid>
+                        <Grid item xs={1} >
+                            <Icon fontSize="large" onClick={e => props.onCancel()}>cancel</Icon>
+                        </Grid>
+                        <Grid item xs={1} className={classes.icon}>
+                            <Icon fontSize="large" onClick={e => captureImage(webcam, onCapture)}>camera</Icon>
+                        </Grid>
+                    </Grid>
                 </CardActions>
             </Card>
         </Modal>
