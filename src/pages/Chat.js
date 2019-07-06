@@ -8,7 +8,7 @@ const CHAT_API = '';
 
 const mensagensInit = [{
     user: {
-        name: 'Joo',
+        nome: 'Joo',
         avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
     },
     date: '22:45',
@@ -16,7 +16,7 @@ const mensagensInit = [{
 },
 {
     user: {
-        name: 'You',
+        nome: 'You',
         avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
     },
     date: '22:45',
@@ -63,7 +63,8 @@ export default props => {
             const newMessage = {
                 text: message,
                 user: {
-                    name: 'You',
+                    _id:1,
+                    nome: 'You',
                     avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
                 },
                 image: image,
@@ -77,7 +78,7 @@ export default props => {
                     value: {
                         text: 'Resposta',
                         user: {
-                            name: 'João',
+                            nome: 'João',
                             avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
                         }
                     }

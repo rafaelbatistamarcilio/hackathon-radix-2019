@@ -31,7 +31,7 @@ export default props => {
                 </ListItemAvatar>
             }
 
-            <ListItemText primary={props.message.user.name} secondary={
+            <ListItemText primary={props.message.user.nome} secondary={
                 <React.Fragment>
                     {
                         props.message.image ? <img className={classes.image} src={props.message.text} /> :

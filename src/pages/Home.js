@@ -21,11 +21,9 @@ export default props => {
     const classes = useStyles();
     return (
         <div>
-            <Icon></Icon>
-            <BottomNavigation className={classes.root} onChange={(event, route) => navigate(route)} >
-                <BottomNavigationAction label="Recents" icon={<Icon>star</Icon>} />
-                <BottomNavigationAction label="Favorites" value="scan" icon={<Icon>alarm</Icon>} />
-                <BottomNavigationAction label="Nearby" value="chat" icon={<Icon>chat</Icon>} />
+            <BottomNavigation showLabels className={classes.root} onChange={(event, route) => navigate(route)} >
+                <BottomNavigationAction label="Chat por QRCode" value="scan" icon={<Icon>view_column</Icon>} />
+                <BottomNavigationAction label="Chat" value="chat" icon={<Icon>chat</Icon>} />
             </BottomNavigation>
         </div>
     )
