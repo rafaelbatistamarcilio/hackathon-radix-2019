@@ -96,11 +96,7 @@ export default props => {
 
         input.addEventListener('change', (event)=>{
             var FR= new FileReader();
-    
-            FR.addEventListener("load", function(e) {
-                console.log(e.target.result);
-            }); 
-            
+            FR.addEventListener("load", e=>  onSave(e.target.result) ); 
             FR.readAsDataURL( event.target.files[0] );
         })
     }
