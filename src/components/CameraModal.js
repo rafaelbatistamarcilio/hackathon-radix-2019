@@ -67,7 +67,7 @@ export default props => {
                         <Grid item xs={1} >
                             <Icon fontSize="large" onClick={e => props.onCancel()}>cancel</Icon>
                         </Grid>
-                        <Grid item xs={1} className={classes.icon}>
+                        <Grid item xs={1} >
                             <Icon fontSize="large" onClick={e => captureImage(webcam, onCapture)}>camera</Icon>
                         </Grid>
                     </Grid>
