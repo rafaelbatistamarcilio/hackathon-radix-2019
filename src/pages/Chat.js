@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import CameraModal from '../components/CameraModal';
 import Mensagens from '../components/Mensagens';
 import MessageInput from '../components/MessageInput';
+import { Snackbar, Button, IconButton } from '@material-ui/core';
 
 const CHAT_API = '';
 
@@ -47,6 +48,7 @@ export default props => {
     const [userId, setUserId] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
     const [mensagens, setStore] = useReducer(reducer, mensagensInit);
+    const [erro, setErro] = useState('');
 
     useEffect(() => { loadUserData(props, setUserId); }, []);
 
@@ -94,12 +96,17 @@ export default props => {
         input.capture = 'camera';
         input.click();
 
-        input.addEventListener('change', (event)=>{
-            var FR= new FileReader();
-            FR.addEventListener("load", e=>  {
-                onSave(e.target.result)
-            } ); 
-            FR.readAsDataURL( event.target.files[0] );
+        input.addEventListener('change', (event) => {
+            try {
+                var FR = new FileReader();
+                FR.addEventListener("load", e => {
+                    onSave(e.target.result)
+                });
+                FR.readAsDataURL(event.target.files[0]);
+            } catch (error) {
+                console.log(error);
+                setErro('Erro ao capturar imagem')
+            }
         })
     }
 
@@ -108,13 +115,27 @@ export default props => {
             <Mensagens mensagens={mensagens} />
 
             {/* <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} /> */}
-            
+
             <MessageInput onMessage={e => sendMessage(e)} onCamera={e => getImage()} />
 
             <CameraModal
                 showCamera={showCamera}
                 onCancel={e => setShowCamera(false)}
                 onSave={imageData => onSave(imageData)} />
+
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={erro !== ''}
+                autoHideDuration={6000}
+                onClose={e => setErro('')}
+                ContentProps={{
+                    'aria-describedby': 'message-id',
+                }}
+                message={<span id="message-id">{erro}</span>}
+            />
         </div>
     )
 }
