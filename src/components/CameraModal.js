@@ -4,7 +4,7 @@ import { Webcam } from '../utils/Webcam';
 
 const useStyles = makeStyles(theme => ({
     icon: {
-        paddingLeft:'2em'
+        paddingLeft:'5px'
     }
 }));
 
@@ -62,14 +62,12 @@ export default props => {
 
                 <CardActions>
                     <Grid alignItems="flex-end" container>
-                        <Grid item xs={10}>
+                        <Grid item xs={4}></Grid>
+                        <Grid item xs={4} >
+                            <Icon className={classes.icon} fontSize="large" onClick={e => props.onCancel()}>cancel</Icon>
+                            <Icon className={classes.icon} fontSize="large" onClick={e => captureImage(webcam, onCapture)}>camera</Icon>
                         </Grid>
-                        <Grid item xs={1} >
-                            <Icon fontSize="large" onClick={e => props.onCancel()}>cancel</Icon>
-                        </Grid>
-                        <Grid item xs={1} >
-                            <Icon fontSize="large" onClick={e => captureImage(webcam, onCapture)}>camera</Icon>
-                        </Grid>
+                        <Grid item xs={4}></Grid>
                     </Grid>
                 </CardActions>
             </Card>

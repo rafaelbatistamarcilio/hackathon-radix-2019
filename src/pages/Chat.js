@@ -86,11 +86,32 @@ export default props => {
         }
     }
 
+
+    function getImage() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.capture = 'camera';
+        input.click();
+
+        input.addEventListener('change', (event)=>{
+            var FR= new FileReader();
+    
+            FR.addEventListener("load", function(e) {
+                console.log(e.target.result);
+            }); 
+            
+            FR.readAsDataURL( event.target.files[0] );
+        })
+    }
+
     return (
         <div>
             <Mensagens mensagens={mensagens} />
 
-            <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} />
+            {/* <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} /> */}
+            
+            <MessageInput onMessage={e => sendMessage(e)} onCamera={e => getImage()} />
 
             <CameraModal
                 showCamera={showCamera}
