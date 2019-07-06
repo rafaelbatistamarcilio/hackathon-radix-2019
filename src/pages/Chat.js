@@ -100,11 +100,14 @@ export default props => {
             try {
                 var FR = new FileReader();
                 FR.addEventListener("load", e => {
-                    onSave(e.target.result)
+                    if (e.target.result) {
+                        onSave(e.target.result)
+                    } else {
+                        getImage();
+                    }
                 });
                 FR.readAsDataURL(event.target.files[0]);
             } catch (error) {
-                console.log(error);
                 setErro('Erro ao capturar imagem')
             }
         })
