@@ -36,16 +36,17 @@ export default props => {
                     {
                         props.message.image ? <img className={classes.image} src={props.message.text} /> :
                         <Typography
-                        component="span"
-                        variant="body2"
-                        className={classes.inline}
-                        color="textPrimary">  
-                        {props.message.text} 
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary">  
+                            {props.message.text} 
                         </Typography>
                     }
-                    {props.message.date}
                 </React.Fragment>
             } />
+            
+            {props.message.date}
 
             {!props.message.fromUser ? null :
                 <ListItemAvatar>

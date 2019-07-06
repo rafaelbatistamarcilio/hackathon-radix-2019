@@ -1,10 +1,10 @@
 
+import { createMuiTheme } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/styles';
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Router from './components/Router';
 import SideMenu from './components/SideMenu';
-import { makeStyles, ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core';
 
 export default () => {
   const [showMenu, setMenu] = useState(false);

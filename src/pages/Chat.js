@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState, useRef } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import CameraModal from '../components/CameraModal';
 import Mensagens from '../components/Mensagens';
 import MessageInput from '../components/MessageInput';
@@ -96,7 +96,9 @@ export default props => {
 
         input.addEventListener('change', (event)=>{
             var FR= new FileReader();
-            FR.addEventListener("load", e=>  onSave(e.target.result) ); 
+            FR.addEventListener("load", e=>  {
+                onSave(e.target.result)
+            } ); 
             FR.readAsDataURL( event.target.files[0] );
         })
     }
@@ -105,9 +107,9 @@ export default props => {
         <div>
             <Mensagens mensagens={mensagens} />
 
-            <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} />
+            {/* <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} /> */}
             
-            {/* <MessageInput onMessage={e => sendMessage(e)} onCamera={e => getImage()} /> */}
+            <MessageInput onMessage={e => sendMessage(e)} onCamera={e => getImage()} />
 
             <CameraModal
                 showCamera={showCamera}
