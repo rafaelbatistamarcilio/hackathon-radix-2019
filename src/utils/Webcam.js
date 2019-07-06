@@ -13,11 +13,11 @@ export class Webcam {
         }
     }
 
-    async setup() {
+    async setup(modo = 'user') {
         return new Promise((resolve, reject) => {
             if (navigator.mediaDevices.getUserMedia !== undefined) {
                 navigator.mediaDevices.getUserMedia({
-                    audio: false, video: { facingMode: 'user' }
+                    audio: false, video: { facingMode: modo }
                 })
                     .then((mediaStream) => {
                         if ("srcObject" in this.webcamElement) {
@@ -69,5 +69,13 @@ export class Webcam {
         const { imageHeight, imageWidth } = this._drawImage();
         const base64 = this.canvasElement.toDataURL('image/' + type, quality);
         return { base64, imageHeight, imageWidth };
+    }
+
+    off() {
+        this.webcamElement.srcObject.getTracks()[0].stop();
+    }
+
+    turnCamera() {
+
     }
 }

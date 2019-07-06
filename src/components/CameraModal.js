@@ -46,6 +46,7 @@ export default props => {
     function onCapture(cameraState) {
         setCameraState(cameraState);
         setShowCanvas(true);
+        webcam.off();
         props.onSave(cameraState.capturedImage);
     }
 
@@ -62,12 +63,13 @@ export default props => {
 
                 <CardActions>
                     <Grid alignItems="flex-end" container>
-                        <Grid item xs={4}></Grid>
-                        <Grid item xs={4} >
-                            <Icon className={classes.icon} fontSize="large" onClick={e => props.onCancel()}>cancel</Icon>
+                        <Grid item xs={3}></Grid>
+                        <Grid item xs={6} >
+                            <Icon className={classes.icon} fontSize="large" onClick={e => { webcam.setup('environment'); }}>switch_camera</Icon>
+                            <Icon className={classes.icon} fontSize="large" onClick={e => { webcam.off(); props.onCancel(); }}>cancel</Icon>
                             <Icon className={classes.icon} fontSize="large" onClick={e => captureImage(webcam, onCapture)}>camera</Icon>
                         </Grid>
-                        <Grid item xs={4}></Grid>
+                        <Grid item xs={3}></Grid>
                     </Grid>
                 </CardActions>
             </Card>

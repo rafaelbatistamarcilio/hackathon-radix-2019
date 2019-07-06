@@ -21,11 +21,11 @@ export default props => {
     const classes = useStyles();
     return (
         <div>
-            <p> Home </p>
+            <Icon></Icon>
             <BottomNavigation className={classes.root} onChange={(event, route) => navigate(route)} >
                 <BottomNavigationAction label="Recents" icon={<Icon>star</Icon>} />
                 <BottomNavigationAction label="Favorites" icon={<Icon>alarm</Icon>} />
-                <BottomNavigationAction label="Nearby" value="mails" icon={<Icon>all_inbox</Icon>} />
+                <BottomNavigationAction label="Nearby" value="chat" icon={<Icon>chat</Icon>} />
             </BottomNavigation>
         </div>
     )
