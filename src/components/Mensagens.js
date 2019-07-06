@@ -1,5 +1,6 @@
+import { Divider, List, makeStyles } from '@material-ui/core';
 import React from 'react';
-import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Divider, makeStyles } from '@material-ui/core';
+import Mensagem from './Mensagem';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     },
     lista: {
         width: '100%',
-        maxWidth: 360,
+        paddingBottom:'100px'
     },
     inline: {
         display: 'inline',
@@ -24,24 +25,11 @@ export default props => {
 
             {props.mensagens.map((message, index) => (
                 <div key={index}>
-                    <ListItem alignItems="flex-start" >
-                        {message.fromUser ? null :
-                            <ListItemAvatar>
-                                <Avatar alt="Remy Sharp" src={message.user.avatar} />
-                            </ListItemAvatar>
-                        }
-                        <ListItemText primary={message.text} secondary={message.date} />
-                        {!message.fromUser ? null :
-                            <ListItemAvatar>
-                                <Avatar alt="Remy Sharp" src={message.user.avatar} />
-                            </ListItemAvatar>
-                        }
-                    </ListItem>
-    
+                    <Mensagem message={message}/>    
                     <Divider variant="inset" component="li" />
                 </div>
             ))}
-            
+
         </List>
     )
 }
