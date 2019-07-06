@@ -24,7 +24,7 @@ export default props => {
             <Icon></Icon>
             <BottomNavigation className={classes.root} onChange={(event, route) => navigate(route)} >
                 <BottomNavigationAction label="Recents" icon={<Icon>star</Icon>} />
-                <BottomNavigationAction label="Favorites" icon={<Icon>alarm</Icon>} />
+                <BottomNavigationAction label="Favorites" value="scan" icon={<Icon>alarm</Icon>} />
                 <BottomNavigationAction label="Nearby" value="chat" icon={<Icon>chat</Icon>} />
             </BottomNavigation>
         </div>
