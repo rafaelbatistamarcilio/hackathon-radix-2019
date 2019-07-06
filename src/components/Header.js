@@ -1,4 +1,4 @@
-import { AppBar, Button, Icon, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Icon, IconButton, Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
 
 export default props => (
@@ -7,8 +7,7 @@ export default props => (
             <IconButton edge="start" color="inherit" aria-label="Menu" onClick={() => props.onOpenMenu()}>
                 <Icon>menu</Icon>
             </IconButton>
-            <Typography variant="h6" > News </Typography>
-            <Button color="inherit">Login</Button>
+            <Typography variant="h6" > CPFL </Typography>
         </Toolbar>
     </AppBar>
 )
