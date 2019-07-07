@@ -87,6 +87,8 @@ export default props => {
         
     }
 
+    
+
     function getImage() {
         const input = document.createElement('input');
         input.type = 'file';
