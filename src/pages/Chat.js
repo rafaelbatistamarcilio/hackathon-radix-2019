@@ -9,7 +9,7 @@ const CHAT_API = '';
 const mensagensInit = [{
     user: {
         nome: 'Joo',
-        avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+        avatar: 'https://i.ibb.co/TYkMVyx/cpfl-logo-atendimento.png'
     },
     date: '22:45',
     text: 'Olá'
@@ -17,7 +17,7 @@ const mensagensInit = [{
 {
     user: {
         nome: 'You',
-        avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+        avatar: 'https://i.ibb.co/QrnhGtR/user-icon.png'
     },
     date: '22:45',
     text: 'Olá',
@@ -49,6 +49,7 @@ export default props => {
     const [showCamera, setShowCamera] = useState(false);
     const [mensagens, setStore] = useReducer(reducer, mensagensInit);
     const [erro, setErro] = useState('');
+    scrollToBottom();
 
     useEffect(() => { loadUserData(props, setUserId); }, []);
 
@@ -65,7 +66,7 @@ export default props => {
                 user: {
                     _id:1,
                     nome: 'You',
-                    avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+                    avatar: 'https://i.ibb.co/QrnhGtR/user-icon.png'
                 },
                 image: image,
                 fromUser: true,
@@ -79,15 +80,30 @@ export default props => {
                         text: 'Resposta',
                         user: {
                             nome: 'João',
-                            avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+                            avatar: 'https://i.ibb.co/TYkMVyx/cpfl-logo-atendimento.png'
                         }
                     }
                 });
             }, 500)
 
+            
+
             setStore({ action: 'add', value: newMessage });
+            
         }
     }
+
+    
+
+    
+    function scrollToBottom(){
+
+        window.setInterval(function() {
+            window.scrollTo(0,document.body.scrollHeight+20000);
+          }, 500)
+
+    }
+
 
 
     function getImage() {
@@ -115,12 +131,12 @@ export default props => {
     }
 
     return (
-        <div>
+        <div id="idScroll">
             <Mensagens mensagens={mensagens} />
 
             {/* <MessageInput onMessage={e => sendMessage(e)} onCamera={e => setShowCamera(true)} /> */}
 
-            <MessageInput onMessage={e => sendMessage(e)} onCamera={e => getImage()} />
+            <MessageInput  onMessage={e => sendMessage(e)} onCamera={e => getImage()} />
 
             <CameraModal
                 showCamera={showCamera}
