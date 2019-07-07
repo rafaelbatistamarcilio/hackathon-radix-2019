@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     },
     searchForm: {
         position: 'fixed',
-        bottom: '5px',
+        bottom: '-20px',
         left: '50%',
         width: '95vw',
         height: '50px',
@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         bottom: '8px',
         left: '16px',
-        fontSize: '14px',
+        fontSize: '16px',
         background: 'none',
         color: '#5a6674',
         width: 'calc(100% - 120px)',
@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         bottom: '8px',
         right: '16px',
-        fontSize: '14px',
+        fontSize: '16px',
         background: 'none',
         color: '#5a6674',
         height: '30px',
@@ -75,7 +75,7 @@ export default props => {
         <form className={classes.searchForm}>
             <input type="search"  value={message} onChange={e => setMessage(e.target.value)} placeholder="Digite aqui" className={classes.searchInput}/>
                 <buttom type="submit" onClick={e => { props.onMessage(message); setMessage(''); }} className={classes.searchButtom} style={{right: '80px'}}>
-                <IconContext.Provider value={{ size: '1.4em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
+                <IconContext.Provider value={{ size: '1.5em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
                 <div>
                     <MdSend />
                 </div>
@@ -83,7 +83,7 @@ export default props => {
                 </buttom>
 
                 <buttom type="submit" onClick={e => props.onCamera()} className={classes.searchButtom} style={{right: '48px'}}>
-                <IconContext.Provider value={{ size: '1.4em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
+                <IconContext.Provider value={{ size: '1.5em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
                 <div>
                     <MdCameraAlt />
                 </div>
@@ -91,7 +91,7 @@ export default props => {
                 </buttom>
 
                 <buttom type="submit" className={classes.searchButtom}  >
-                <IconContext.Provider value={{ size: '1.4em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
+                <IconContext.Provider value={{ size: '1.5em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
                 <div>
                     <MdAttachFile />
                 </div>

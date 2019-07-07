@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
                         </IconButton>
                     </Grid>
                     <Grid item xs={9}>
-                        <Typography className={classes.center} variant="h6" style={{  fontWeight: "400",  justifyContent:'center', alignItems:'center', width: '100%'}}> Ajuda </Typography>
+                        <Typography className={classes.center} variant="h6" style={{  fontWeight: "400",  justifyContent:'center', alignItems:'center', width: '100%'}}> Marvin </Typography>
                     </Grid>
                     <Grid item xs={2} style={{paddingLeft: '20px'}}>
                         <img className={classes.right} src="./cpfl_logo.png"  height="32px"  alt="Logo" />

@@ -44,14 +44,14 @@ const useStyles = makeStyles(theme => ({
         margin: '0',
         borderRadius: '12px',
         backgroundColor: '#B8BABF',
-        color: 'white'
+        color: '#000000'
     },
     textRobot: {
         padding: '10px',
         margin: '0',
         borderRadius: '12px',
         backgroundColor: '#5DD3F9',
-        color: 'white',
+        color: '#000000',
         
     },
     horaContainer: {

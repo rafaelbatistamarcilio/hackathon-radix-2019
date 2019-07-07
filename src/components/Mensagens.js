@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
         display: 'inline',
     },
     messagestList: {
-        padding: '20px 0',
+        padding: '20px 0 80px 0',
         width: '100%',
         margin: '0 auto',
         listStyle: 'none',
