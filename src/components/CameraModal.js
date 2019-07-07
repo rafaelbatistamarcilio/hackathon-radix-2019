@@ -8,7 +8,6 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
 const takePick = (cameraElement, canvasElement, callback) => {
     const cam = new Webcam(cameraElement, canvasElement);
     cam.setup('user').catch(() => alert('Error getting access to your camera'));
@@ -33,8 +32,8 @@ export default props => {
     const classes = useStyles();
 
     const [cameraState, setCameraState] = useState(cameraInitialState);
-    const [webcam, setCamera] = useState(null);
     const [showCanvas, setShowCanvas] = useState(false);
+    const [webcam, setCamera] = useState(null);
 
     const canvasElement = useRef();
     const cameraElement = useRef();

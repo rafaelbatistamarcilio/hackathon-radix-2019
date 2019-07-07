@@ -34,7 +34,7 @@ export default props => {
             <ListItemText primary={props.message.user.nome} secondary={
                 <React.Fragment>
                     {
-                        props.message.image ? <img className={classes.image} src={props.message.text} /> :
+                        props.message.foto ? <img className={classes.image} src={props.message.foto} /> :
                         <Typography
                             component="span"
                             variant="body2"
