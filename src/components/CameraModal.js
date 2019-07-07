@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardActions, CardContent, Grid, Icon, Modal, makeStyles } from '@material-ui/core';
+import { Card, CardActionArea, CardActions, CardContent, Grid, Icon, makeStyles, Modal } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
 import { Webcam } from '../utils/Webcam';
 
@@ -7,7 +7,6 @@ const useStyles = makeStyles(theme => ({
         paddingLeft:'5px'
     }
 }));
-
 
 const takePick = (cameraElement, canvasElement, callback) => {
     const cam = new Webcam(cameraElement, canvasElement);
@@ -33,8 +32,8 @@ export default props => {
     const classes = useStyles();
 
     const [cameraState, setCameraState] = useState(cameraInitialState);
-    const [webcam, setCamera] = useState(null);
     const [showCanvas, setShowCanvas] = useState(false);
+    const [webcam, setCamera] = useState(null);
 
     const canvasElement = useRef();
     const cameraElement = useRef();

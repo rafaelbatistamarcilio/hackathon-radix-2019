@@ -1,110 +1,87 @@
+import { Snackbar } from '@material-ui/core';
+import Axios from 'axios';
 import React, { useEffect, useReducer, useState } from 'react';
 import CameraModal from '../components/CameraModal';
 import Mensagens from '../components/Mensagens';
 import MessageInput from '../components/MessageInput';
-import { Snackbar, Button, IconButton } from '@material-ui/core';
+import { MessagesReducer } from '../reducers/MessagesReducer';
 
-const CHAT_API = '';
+const CHAT_API = 'https://cpflbot.herokuapp.com/chat';
 
-const mensagensInit = [{
-    user: {
-        nome: 'Joo',
-        avatar: 'https://i.ibb.co/TYkMVyx/cpfl-logo-atendimento.png'
-    },
-    date: '22:45',
-    text: 'Olá'
-},
-{
-    user: {
-        nome: 'You',
-        avatar: 'https://i.ibb.co/QrnhGtR/user-icon.png'
-    },
-    date: '22:45',
-    text: 'Olá',
-    fromUser: true
-}];
-
-const loadUserData = (props, callback) => {
-    const id = props.history.location.search;
-    if (id) {
-        callback(id.replace('?uid=', ''))
+const mensagemMarley = texto => {
+    return {
+        text: texto,
+        user: {
+            nome: 'Marvin',
+            avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+        },
+        date: new Date().toLocaleDateString()
     }
 }
 
-function reducer(mensagens, { action, value }) {
-    switch (action) {
-        case 'add':
-            mensagens.push(value);
-            return [].concat(mensagens);
-        case 'load':
-            return mensagens;
-        default:
-            throw new Error();
+const mensagemUsuario = ({message, user, image}) => {
+    return {
+        text: image ? null : message,
+        user,
+        foto: image ? message : null,
+        fromUser: true,
+        date: new Date().toLocaleDateString()
     }
+}
+
+const loadUserData = async (props, callback) => {
+    const id = props.history.location.search;
+    if (id) {
+        const response = await Axios.get(`${CHAT_API + id}`);
+        callback(response)
+    }
+}
+
+const addMessage = async data => {
+    const request = {
+        context: data.user.context,
+        text: data.image ? null : data.message,
+        foto: data.image ? data.message : ''
+    };
+    const response = await Axios.post(CHAT_API, request);
+    return response.data;
 }
 
 export default props => {
 
-    const [userId, setUserId] = useState(null);
+    const [user, setUser] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
-    const [mensagens, setStore] = useReducer(reducer, mensagensInit);
-    const [erro, setErro] = useState('');
-    scrollToBottom();
+    const [mensagens, setStore] = useReducer(MessagesReducer, []);
+    const [erro,setErro] = useState('');
 
-    useEffect(() => { loadUserData(props, setUserId); }, []);
+    useEffect(() => {
+        loadUserData(props, response => {
+            const message = response.data;
+            setStore({ action: 'init', value: mensagemMarley(message.resposta[0])});
+            setUser({ ...message.cliente, context: message.context });
+        });
+    }, []);
 
     function onSave(imageData) {
         sendMessage(imageData, true);
         setShowCamera(false);
     }
 
-    const sendMessage = (message, image) => {
+    const sendMessage = async (message, image) => {
         if (message) {
-            //Axios.post(CHAT_API, { message });
-            const newMessage = {
-                text: message,
-                user: {
-                    _id:1,
-                    nome: 'You',
-                    avatar: 'https://i.ibb.co/QrnhGtR/user-icon.png'
-                },
-                image: image,
-                fromUser: true,
-                date: '10/10/2016'
+            try {
+                const response = await addMessage({ message, user , image });
+                setStore({ action: 'add', value: mensagemUsuario({message, user, image})});
+
+                setUser({ ...user, context: response.context });
+
+                const respostaBot = mensagemMarley(response.resposta[0]);
+                setStore({ action: 'add', value: respostaBot });
+            } catch (error) {
+                setErro('Erro ao enviar mensagem')
             }
-
-            setTimeout(() => {
-                setStore({
-                    action: 'add',
-                    value: {
-                        text: 'Resposta',
-                        user: {
-                            nome: 'João',
-                            avatar: 'https://i.ibb.co/TYkMVyx/cpfl-logo-atendimento.png'
-                        }
-                    }
-                });
-            }, 500)
-
-            
-
-            setStore({ action: 'add', value: newMessage });
-            
         }
     }
-
-    
-
-    
-    function scrollToBottom(){
-
-        window.setInterval(function() {
-            window.scrollTo(0,document.body.scrollHeight+20000);
-          }, 500)
-
-    }
-
-
 
     function getImage() {
         const input = document.createElement('input');

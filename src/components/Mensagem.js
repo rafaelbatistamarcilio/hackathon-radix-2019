@@ -1,6 +1,5 @@
-import React from 'react';
-import { ListItem, ListItemAvatar, Avatar, ListItemText, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import React from 'react';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -79,7 +78,10 @@ export default props => {
             
             <img className={classes.avatar} src={props.message.user.avatar} />
             <div className={classes.content}>
-                <div className={props.message.fromUser ? classes.textUser : classes.textRobot} > {props.message.text}  </div>
+                {
+                    props.message.foto ? <img className={classes.image} src={props.message.foto} /> :
+                    <div className={props.message.fromUser ? classes.textUser : classes.textRobot} > {props.message.text}  </div>
+                }
             </div>
             <div className={classes.horaContainer}>
                 <div className={classes.horaTexto}> 12:00 </div>

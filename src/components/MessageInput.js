@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { InputBase, Paper, Button, Icon, Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import { MdSend, MdCameraAlt, MdAttachFile} from "react-icons/md";
+import React, { useState } from 'react';
 import { IconContext } from "react-icons";
+import { MdAttachFile, MdCameraAlt, MdSend } from "react-icons/md";
 
 
 const useStyles = makeStyles(theme => ({
@@ -70,8 +69,6 @@ export default props => {
 
     const classes = useStyles();
     return (
-
-        
         <form className={classes.searchForm}>
             <input type="search"  value={message} onChange={e => setMessage(e.target.value)} placeholder="Digite aqui" className={classes.searchInput}/>
                 <buttom type="submit" onClick={e => { props.onMessage(message); setMessage(''); }} className={classes.searchButtom} style={{right: '80px'}}>
@@ -97,11 +94,6 @@ export default props => {
                 </div>
                 </IconContext.Provider>
                 </buttom>
-
-            
         </form>
-
-
-
     )
 }
