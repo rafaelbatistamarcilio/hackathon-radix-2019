@@ -18,41 +18,74 @@ const useStyles = makeStyles(theme => ({
     image:{
         width: '100%',
         height: 'auto'
+    },
+    avatar:{
+        height: '45px',
+        width: '45px',
+        margin: '0 10px -10px',
+        display: 'inline-block'
+    },
+    messageFromRobot: {
+        display: 'flex',
+        marginTop: '20px'
+    },
+    messageFromUser: {
+        display: 'flex',
+        marginTop: '20px',
+        flexDirection: 'row-reverse',
+        textAlign: 'right'
+    },
+    content: {
+        display: 'inline-block',
+        maxWidth: '60vw'
+    },
+    textUser: {
+        padding: '10px',
+        margin: '0',
+        borderRadius: '12px',
+        backgroundColor: '#B8BABF',
+        color: 'white'
+    },
+    textRobot: {
+        padding: '10px',
+        margin: '0',
+        borderRadius: '12px',
+        backgroundColor: '#5DD3F9',
+        color: 'white',
+        
+    },
+    horaContainer: {
+        position: 'relative',
+        paddingTop: '30px',
+        paddingLeft: '10px',
+        paddingRight: '50px'
+    },
+    horaTexto: {
+        fontSize: '12px',
+        position: 'absolute',
+        bottom: '0'
     }
+
+
 }));
 
 export default props => {
     const classes = useStyles();
+    
+
     return (
-        <ListItem alignItems="flex-start" >
-            {props.message.fromUser ? null :
-                <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src={props.message.user.avatar} />
-                </ListItemAvatar>
-            }
 
-            <ListItemText primary={props.message.user.nome} secondary={
-                <React.Fragment>
-                    {
-                        props.message.image ? <img className={classes.image} src={props.message.text} /> :
-                        <Typography
-                            component="span"
-                            variant="body2"
-                            className={classes.inline}
-                            color="textPrimary">  
-                            {props.message.text} 
-                        </Typography>
-                    }
-                </React.Fragment>
-            } />
+        <li className={props.message.fromUser ? classes.messageFromUser : classes.messageFromRobot}>
             
-            {props.message.date}
+            <img className={classes.avatar} src={props.message.user.avatar} />
+            <div className={classes.content}>
+                <div className={props.message.fromUser ? classes.textUser : classes.textRobot} > {props.message.text}  </div>
+            </div>
+            <div className={classes.horaContainer}>
+                <div className={classes.horaTexto}> 12:00 </div>
+            </div>
+        </li>
 
-            {!props.message.fromUser ? null :
-                <ListItemAvatar>
-                    <Avatar alt="Remy Sharp" src={props.message.user.avatar} />
-                </ListItemAvatar>
-            }
-        </ListItem>
+
     )
 }

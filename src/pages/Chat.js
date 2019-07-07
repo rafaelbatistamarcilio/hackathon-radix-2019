@@ -9,7 +9,7 @@ const CHAT_API = '';
 const mensagensInit = [{
     user: {
         nome: 'Joo',
-        avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+        avatar: 'https://i.ibb.co/TYkMVyx/cpfl-logo-atendimento.png'
     },
     date: '22:45',
     text: 'Olá'
@@ -17,7 +17,7 @@ const mensagensInit = [{
 {
     user: {
         nome: 'You',
-        avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+        avatar: 'https://i.ibb.co/QrnhGtR/user-icon.png'
     },
     date: '22:45',
     text: 'Olá',
