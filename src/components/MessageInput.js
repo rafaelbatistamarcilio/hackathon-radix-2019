@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { InputBase, Paper, Button, Icon, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
+import React, { useState } from 'react';
+import { IconContext } from "react-icons";
+import { MdAttachFile, MdCameraAlt, MdSend } from "react-icons/md";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -21,6 +23,44 @@ const useStyles = makeStyles(theme => ({
     },
     icon: {
         float: 'rigth'
+    },
+    searchForm: {
+        position: 'fixed',
+        bottom: '-20px',
+        left: '50%',
+        width: '95vw',
+        height: '50px',
+        borderRadius: '20px',
+        boxShadow: '0 6px 8px rgba(0, 0, 0, 0.15)',
+        transform: 'translate(-50%, -50%)',
+        background: '#fff',
+        transition: 'all 0.3s ease',
+    },
+    searchInput: {
+        position: 'absolute',
+        bottom: '8px',
+        left: '16px',
+        fontSize: '16px',
+        background: 'none',
+        color: '#5a6674',
+        width: 'calc(100% - 120px)',
+        height: '30px',
+        border: 'none',
+        appearance: 'none',
+        outline: 'none',
+
+    },
+    searchButtom: {
+        position: 'absolute',
+        bottom: '8px',
+        right: '16px',
+        fontSize: '16px',
+        background: 'none',
+        color: '#5a6674',
+        height: '30px',
+        border: 'none',
+        appearance: 'none',
+        outline: 'none',
     }
 }));
 
@@ -29,23 +69,31 @@ export default props => {
 
     const classes = useStyles();
     return (
-        <Paper className={classes.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={9} md={10}>
-                    <InputBase
-                        value={message}
-                        onChange={e => setMessage(e.target.value)}
-                        className={classes.input}
-                        placeholder="Message..."
-                        inputProps={{ 'aria-label': 'Message...' }} />
-                </Grid>
-                <Grid item xs={1}>
-                    <Icon className={classes.icon} onClick={e => props.onCamera()}>camera_alt</Icon>
-                </Grid>
-                <Grid item xs={1}>
-                    <Icon onClick={e => { props.onMessage(message); setMessage(''); }}>send</Icon>
-                </Grid>
-            </Grid>
-        </Paper>
+        <form className={classes.searchForm}>
+            <input type="search"  value={message} onChange={e => setMessage(e.target.value)} placeholder="Digite aqui" className={classes.searchInput}/>
+                <buttom type="submit" onClick={e => { props.onMessage(message); setMessage(''); }} className={classes.searchButtom} style={{right: '80px'}}>
+                <IconContext.Provider value={{ size: '1.5em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
+                <div>
+                    <MdSend />
+                </div>
+                </IconContext.Provider>
+                </buttom>
+
+                <buttom type="submit" onClick={e => props.onCamera()} className={classes.searchButtom} style={{right: '48px'}}>
+                <IconContext.Provider value={{ size: '1.5em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
+                <div>
+                    <MdCameraAlt />
+                </div>
+                </IconContext.Provider>
+                </buttom>
+
+                <buttom type="submit" className={classes.searchButtom}  >
+                <IconContext.Provider value={{ size: '1.5em', color: "#115A75", className: "global-class-name", style: { verticalAlign: 'middle' } }}>
+                <div>
+                    <MdAttachFile />
+                </div>
+                </IconContext.Provider>
+                </buttom>
+        </form>
     )
 }

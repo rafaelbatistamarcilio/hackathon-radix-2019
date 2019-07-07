@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardActions, CardContent, Grid, Icon, Modal, makeStyles } from '@material-ui/core';
+import { Card, CardActionArea, CardActions, CardContent, Grid, Icon, makeStyles, Modal } from '@material-ui/core';
 import React, { useRef, useState } from 'react';
 import { Webcam } from '../utils/Webcam';
 

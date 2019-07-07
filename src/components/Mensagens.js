@@ -1,4 +1,4 @@
-import { Divider, List, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import Mensagem from './Mensagem';
 
@@ -13,23 +13,35 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         paddingBottom:'100px'
     },
+    message: {
+        display: 'flex',
+        marginTop: '10px',
+        display: 'inline-block'
+    },
     inline: {
         display: 'inline',
     },
+    messagestList: {
+        padding: '20px 0 80px 0',
+        width: '100%',
+        margin: '0 auto',
+        listStyle: 'none',
+        paddingLeft: '0',
+        flexGrow: '1',
+        overflow: 'auto'
+    }
+
 }));
 
 export default props => {
     const classes = useStyles();
     return (
-        <List className={classes.lista}>
 
+        <ul className={classes.messagestList}>
             {props.mensagens.map((message, index) => (
-                <div key={index}>
-                    <Mensagem message={message}/>    
-                    <Divider variant="inset" component="li" />
-                </div>
+                <Mensagem message={message} key={index}/>   
             ))}
+        </ul>
 
-        </List>
     )
 }

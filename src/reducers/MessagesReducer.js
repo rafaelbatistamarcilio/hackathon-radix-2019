@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const MessagesReducer = (mensagens, { action, value }) => {
     switch (action) {

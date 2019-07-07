@@ -9,6 +9,11 @@ import SideMenu from './components/SideMenu';
 export default () => {
   const [showMenu, setMenu] = useState(false);
   const theme = createMuiTheme({
+    typography: {
+      fontFamily: [
+        '"DarwinW00-Light'
+      ]
+    }
     // palette: {
     //   type: 'dark',
     // },
