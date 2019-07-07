@@ -13,7 +13,7 @@ const mensagemMarley = texto => {
         text: texto,
         user: {
             nome: 'Marvin',
-            avatar: 'https://www.stickees.com/files/avatars/male-avatars/1697-andrew-sticker.png'
+            avatar: 'https://i.ibb.co/TYkMVyx/cpfl-logo-atendimento.png'
         },
         date: new Date().toLocaleDateString()
     }
@@ -40,7 +40,7 @@ const loadUserData = async (props, callback) => {
 const addMessage = async data => {
     const request = {
         context: data.user.context,
-        text: data.image ? null : data.message,
+        text: data.image ? 'foto' : data.message,
         foto: data.image ? data.message : ''
     };
     const response = await Axios.post(CHAT_API, request);
@@ -77,10 +77,14 @@ export default props => {
 
                 const respostaBot = mensagemMarley(response.resposta[0]);
                 setStore({ action: 'add', value: respostaBot });
+
+                window.scrollTo(0,document.body.scrollHeight+2000);
+
             } catch (error) {
                 setErro('Erro ao enviar mensagem')
             }
         }
+        
     }
 
     function getImage() {

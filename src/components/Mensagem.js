@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
         position: 'relative',
         paddingTop: '30px',
         paddingLeft: '10px',
-        paddingRight: '50px'
+        paddingRight: '70px'
     },
     horaTexto: {
         fontSize: '12px',
@@ -84,7 +84,7 @@ export default props => {
                 }
             </div>
             <div className={classes.horaContainer}>
-                <div className={classes.horaTexto}> 12:00 </div>
+                <div className={classes.horaTexto}> {props.message.date} </div>
             </div>
         </li>
 
